@@ -1,0 +1,110 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+}
+
+p {
+    color: #8da9b1;
+}
+
+#h1-centering {
+    text-align: center;
+}
+
+h1,h2,h3 {
+    color: #275e9c;
+}
+
+header {
+    margin: 20px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #a4d3f7;
+    border-radius: 12px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.div-bem-vindo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+}
+
+#img-usuario {
+    object-fit: cover;
+    width: 80px; 
+    height: 70px;    
+    border-radius: 50%;
+    border: 1px solid #a4d3f7;
+}
+
+.div-bem-vindo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+section {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#img-logo {
+    width: 40%;
+    padding: 20px;
+}
+
+#paragraph-section{
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+main {
+    padding-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 20px;           
+    align-items: stretch;    /* Forca ter a altura do maior */
+}
+
+a {
+    text-decoration: none;
+}
+
+.card-acao {
+    border: 1px solid #a4d3f7;
+    border-radius: 20px;
+    text-align: center;
+    width: 200px;
+    padding-bottom: 20px;
+}
+
+.main-cards-h2 {
+    padding-top: 12px;
+    padding-left: 22px;
+    padding-right: 22px;
+}
+
+.main-cards-p {
+    padding-top: 12px;
+    padding-left: 22px;
+    padding-right: 22px;
+    padding-bottom: 12px;
+}
+
+.card-acao a {
+    margin-top: auto;
+    padding-top: 10px;
+}
