@@ -82,6 +82,7 @@ section {
 }
 
 #img-logo {
+    min-width: 280px;
     width: 40%;
     padding: 20px;
 }
