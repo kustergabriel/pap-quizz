@@ -8,7 +8,7 @@ body {
 }
 
 p {
-    color: #8da9b1;
+    color: #4f6166;
 }
 
 #h1-centering {
@@ -17,6 +17,10 @@ p {
 
 h1,h2,h3 {
     color: #275e9c;
+}
+
+h3 {
+    font-size: 15px;
 }
 
 header {
@@ -29,6 +33,25 @@ header {
     border-radius: 12px;
     flex-wrap: wrap;
     gap: 15px;
+}
+
+#header-exit {
+    padding: 6px 14px;
+    border: 1px solid #a4d3f7;
+    border-radius: 10px;
+    background-color: white;
+    transition: background-color 0.4s ease;
+}
+
+#id-pontos {
+    padding: 6px 14px;
+    border: 1px solid #a4d3f7;
+    border-radius: 10px;
+    background-color: #a4d3f7;
+}
+
+#header-exit:hover {
+    background-color: #a4d3f7;
 }
 
 .div-bem-vindo {
@@ -79,6 +102,13 @@ main {
     align-items: stretch;    /* Forca ter a altura do maior */
 }
 
+.botao-visual {
+    padding: 5px 35px;
+    border: 1px solid #a4d3f7;
+    border-radius: 15px;
+    color: #275e9c;
+}
+
 a {
     text-decoration: none;
 }
@@ -107,4 +137,22 @@ a {
 .card-acao a {
     margin-top: auto;
     padding-top: 10px;
+}
+
+article {
+    margin: 28px;
+    border: 1px solid #a4d3f7;
+    border-radius: 20px;
+}
+
+#how-work {
+    gap: 12px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 15px;
+}
+
+#h2-how-work {
+    padding: 18px;
 }
