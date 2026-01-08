@@ -82,7 +82,7 @@ label {
     background-color: #2699FB;
     color: #FFFFFF;
     border: none;
-    border-radius: 6px;
+    border-radius: 10px;
     cursor: pointer;
     font-weight: 600;
 }
@@ -135,11 +135,15 @@ label {
     object-fit: contain; 
 }
 
+h1, h2, h3 {
+  color: #275e9c;
+}
 
+p {
+color: #4f6166;
+}
 
-
-
-
-
-
-
+.footer-text {
+color: #4f6166;
+padding: 25px;
+}
