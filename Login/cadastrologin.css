@@ -1,0 +1,145 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'nunito', sans-serif;
+}
+
+body {
+    background-color: #F2F2F2;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000000;
+}
+
+.login-container {
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.logo {
+    width: 70px;
+    height: 70px;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    margin: 0 auto 10px;
+}
+
+
+h1 {
+    font-size: 26px;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: #555;
+    margin-bottom: 25px;
+}
+
+.card {
+    background-color: #FFFFFF;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+}
+
+label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    border: 1px solid #7FC4FD;
+    border-radius: 6px;
+    padding: 8px 10px;
+    gap: 8px;
+}
+
+.input-group input {
+    border: none;
+    outline: none;
+    width: 100%;
+}
+
+.btn-primary {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #2699FB;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+}
+
+.divider {
+    height: 1px;
+    background-color: #e0e0e0;
+    margin: 15px 0;
+}
+
+.small-text {
+    font-size: 13px;
+    text-align: center;
+    color: #555;
+}
+
+.btn-secondary {
+    padding: 8px;
+    background-color: transparent;
+    border: 1px solid #7FC4FD;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-secondary:hover {
+    background-color: #7FC4FD;
+    color: #FFFFFF;
+}
+
+.logo {
+    width: 230px; 
+    height: 180px;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px; 
+    
+    overflow: hidden; 
+}
+
+.logo img {
+    width: 100%;    
+    height: auto;   
+    object-fit: contain; 
+}
+
+
+
+
+
+
+
+
+
