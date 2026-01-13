@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import user from "../models/user";
+import user from "../models/user.js";
 
 
 class userController {
@@ -14,3 +14,5 @@ class userController {
         // }
     }
 }
+
+export default userController

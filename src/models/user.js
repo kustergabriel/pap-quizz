@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
-import { questionSchema } from './question'
+import { questionSchema } from './question.js'
 
 
 const userSchema = new mongoose.Schema ( {
     id: { type: mongoose.Schema.Types.ObjectId },
-    name: {type:String, required:True},
-    nickname: {type:String, required:True},
-    email: {type:String, required:True},
+    name: {type:String, required:true},
+    nickname: {type:String, required:true},
+    email: {type:String, required:true},
     points: {type:Number},
     questionsRight: [questionSchema],
     questionsWrong: [questionSchema],
