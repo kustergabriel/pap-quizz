@@ -10,7 +10,7 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 conexao.on('error', (erro)=> {
-    console.error("erro de conexao ", erro)
+    console.error("erro de conexao ", erro);
 })
 
 app.use(express.json());
