@@ -14,7 +14,7 @@ cadastroFormulario.addEventListener ('submit', async (event) => {
     console.log("Dados capturados com sucesso:", dados);
 
     try {
-        const newUser = await fetch ('/cadastro', {
+        const resposta = await fetch ('/cadastro', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -24,17 +24,13 @@ cadastroFormulario.addEventListener ('submit', async (event) => {
         const resultado = await resposta.json();
 
         if (resposta.ok) {
-            const resultado = await resposta.json();
-            console.log("Resposta do servidor:", resultado);
-            alert("Cadastrado com sucesso no Banco de Dados!");
+            alert("Usuário cadastrado com sucesso!");
+            console.log("Sucesso:", resultado);
         } else {
-            alert('Erro ao cadastrar: ' + resultado.message);
-            console.error("O servidor recebeu, mas deu erro.");
-            alert("Erro ao cadastrar.");
+            alert("Erro no cadastro: " + (resultado.message || "Erro desconhecido"));
             }
         } catch (erro) {
-        console.error('Erro na requisição:', erro);
-        alert('Não foi possível conectar ao servidor.');
+        console.error("Erro na requisição:", erro);
         }
 
 })
