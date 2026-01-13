@@ -19,7 +19,7 @@
         </header>
 
         <main class="form-card">
-            <form>
+            <form id="form-card">
                 <div class="input-group">
                     <label for="cpf">CPF</label>
                     <div class="input-wrapper">
@@ -37,10 +37,18 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="user">Nome de Usuário</label>
+                    <label for="user">Nome</label>
                     <div class="input-wrapper">
                         <i data-lucide="user"></i>
-                        <input type="text" id="user" placeholder="Digite seu nome de usuário">
+                        <input type="text" id="user" placeholder="Digite seu nome">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="user">Nickname</label>
+                    <div class="input-wrapper">
+                        <i data-lucide="user"></i>
+                        <input type="text" id="nickname" placeholder="Digite seu Nickname">
                     </div>
                 </div>
 
@@ -73,5 +81,6 @@
     <script>
       lucide.createIcons();
     </script>
+    <script src="/js/script.js"></script>
 </body>
 </html>
