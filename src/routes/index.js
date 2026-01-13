@@ -19,6 +19,11 @@ const routes = (app) => {
     app.get("/cadastro", (req,res) => {
         res.sendFile(path.join(__dirname, "../views/cadusuario.html"));
     });
+
+    // Rota de login
+    app.get("/login", (req,res) => {
+        res.sendFile(path.join(__dirname, "../views/cadastrologin.html"));
+    });
      
     
     // Rota de API

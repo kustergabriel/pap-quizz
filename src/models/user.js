@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema ( {
     name: {type:String, required:true},
     nickname: {type:String, required:true},
     email: {type:String, required:true},
+    cpf: {type: String, required: true, unique: true},
     points: {type:Number},
     questionsRight: [questionSchema],
     questionsWrong: [questionSchema],
