@@ -25,6 +25,11 @@ const routes = (app) => {
         res.sendFile(path.join(__dirname, "../views/cadastrologin.html"));
     });
      
+
+    // Rota de home
+    app.get("/home", (req,res) => {
+        res.sendFile(path.join(__dirname, "../views/homepageusr.html"));
+    });
     
     // Rota de API
     app.use(express.json(), user, questions)

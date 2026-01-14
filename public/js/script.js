@@ -1,9 +1,13 @@
+const loginUsuario = document.getElementById('form-login');
 const cadastroFormulario = document.getElementById('form-card');
-const botao = document.querySelector('.btn-submit'); 
-const campos = cadastroFormulario.querySelectorAll('input');
-const inputCpf = document.getElementById('cpf');
-const campoSenha = document.getElementById('pass');
-const campoConfirmarSenha = document.getElementById('confirm-pass');
+
+
+if (cadastroFormulario) {
+    const botao = document.querySelector('.btn-submit'); 
+    const campos = cadastroFormulario.querySelectorAll('input');
+    const inputCpf = document.getElementById('cpf');
+    const campoSenha = document.getElementById('pass');
+    const campoConfirmarSenha = document.getElementById('confirm-pass');
 
 function validarFormulario() {
     let todosPreenchidos = true;
@@ -34,26 +38,23 @@ function validarFormulario() {
     }
 }
 
+
 campos.forEach(input => {
     input.addEventListener('input', validarFormulario);
 });
 
-validarFormulario();
 
-inputCpf.addEventListener('input', (e) => {
-    let v = e.target.value.replace(/\D/g, ""); 
+if (inputCpf) {
+        inputCpf.addEventListener('input', (e) => {
+            let v = e.target.value.replace(/\D/g, ""); 
+            if (v.length > 11) v = v.slice(0, 11); 
+            v = v.replace(/(\d{3})(\d)/, "$1.$2").replace(/(\d{3})(\d)/, "$1.$2").replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+            e.target.value = v;
+            validarFormulario(); 
+        });
+    }
 
-    if (v.length > 11) v = v.slice(0, 11); 
-
-    v = v.replace(/(\d{3})(\d)/, "$1.$2");
-    v = v.replace(/(\d{3})(\d)/, "$1.$2");
-    v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
-
-    e.target.value = v;
-    
-    validarFormulario(); 
-});
-
+// Cadastro
 cadastroFormulario.addEventListener('submit', async (event) => {
     event.preventDefault();
 
@@ -66,7 +67,7 @@ cadastroFormulario.addEventListener('submit', async (event) => {
     };
 
     try {
-        const resposta = await fetch('/cadastro', {
+            const resposta = await fetch('/cadastro', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(dados)
@@ -77,7 +78,6 @@ cadastroFormulario.addEventListener('submit', async (event) => {
         if (resposta.ok) {
             // alert("Usuário cadastrado com sucesso!");
             console.log("Sucesso:", resultado);
-            // Aqui você pode redirecionar: window.location.href = '/login.html'
             window.location.href = '/login'
             
         } else {
@@ -87,3 +87,37 @@ cadastroFormulario.addEventListener('submit', async (event) => {
         console.error("Erro na requisição:", erro);
     }
 });
+}
+
+// Login
+if (loginUsuario) {
+loginUsuario.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const login = {
+        nickname: document.getElementById('login-user').value,
+        password: document.getElementById('login-pass').value
+    }
+
+    try {
+            const resposta = await fetch('/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(login)
+        });
+
+        const resultado = await resposta.json();
+
+        if (resposta.ok) {
+            // alert("Usuário cadastrado com sucesso!");
+            console.log("Sucesso:", resultado);
+            window.location.href = '/home'
+            
+        } else {
+            alert("Erro no login: " + (resultado.message || "Erro desconhecido"));
+                }
+        } catch (erro) {
+        console.error("Erro na requisição:", erro);
+    }
+})
+}

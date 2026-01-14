@@ -4,56 +4,42 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="css/cadastrologin.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div class="login-container">
-    <div class="logo">
-    <img src="/images/LOGOPAPHD.png" alt="logo">
-    </div>
+        <div class="logo">
+            <img src="/images/LOGOPAPHD.png" alt="logo">
+        </div>
 
         <h1>Bem-vindo!</h1>
         <p class="subtitle">Quiz de Regimentos Ponto a Ponto</p>
 
         <div class="card">
-            <form>
-                <label>Nome de Usuário</label>
+            <form id="form-login">
+                <label for="login-user">Nome de Usuário</label>
                 <div class="input-group">
-                    <span></span>
-                    <input type="text" placeholder="Digite seu nome de usuário">
+                    <input type="text" id="login-user" name="nickname" placeholder="Digite seu nome de usuário" required>
                 </div>
 
-                <label>Senha</label>
+                <label for="login-pass">Senha</label>
                 <div class="input-group">
-                    <span></span>
-                    <input type="password" placeholder="Digite sua senha">
+                    <input type="password" id="login-pass" name="password" placeholder="Digite sua senha" required>
                 </div>
 
-                <button class="btn-primary">Entrar</button>
+                <button type="submit" class="btn-primary">Entrar</button>
 
                 <div class="divider"></div>
 
                 <p class="small-text">Ainda não tem uma conta?</p>
 
-                <button class="btn-secondary">Cadastrar-se</button>
+                <button type="button" class="btn-secondary" onclick="window.location.href='/cadastro'">
+                    Cadastrar-se
+                </button>
             </form>
         </div>
-
-        <p class="footer-text">
-            Acumule pontos e troque por recompensas na loja! 
-        </p>
-
     </div>
-    <body>
-  <div class="page">
-    
-      
-    </div>
-
-  </div>
-</body>
-
-
-</body>
+    <script src="/js/script.js"></script>
+    </body>
 </html>
