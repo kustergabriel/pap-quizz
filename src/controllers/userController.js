@@ -6,8 +6,8 @@ class userController {
     static async createUser (req,res) {
         try {
             console.log("Dados recebidos no Servidor:", req.body);
+            
             // Verificar se ja existe esse email ou nickname do db
-
             const { email, nickname, cpf } = req.body
             
             const userInDb = await user.findOne ({

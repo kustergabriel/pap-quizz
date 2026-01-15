@@ -23,20 +23,19 @@ function validarFormulario() {
     if (todosPreenchidos && senhasIguais) {
         botao.disabled = false;
         botao.classList.add('active');
-        campoConfirmarSenha.style.borderColor = "#dee2e6"; // Cor padrão
+        campoConfirmarSenha.style.borderColor = "#dee2e6"; 
     } else {
         botao.disabled = true;
         botao.classList.remove('active');
         
         // Feedback visual se o usuário já começou a digitar a confirmação e está errada
         if (campoConfirmarSenha.value.length > 0 && !senhasIguais) {
-            campoConfirmarSenha.style.borderColor = "#ff4d4d"; // Borda vermelha de erro
+            campoConfirmarSenha.style.borderColor = "#ff4d4d"; 
         } else {
             campoConfirmarSenha.style.borderColor = "#dee2e6";
         }
     }
 }
-
 
 campos.forEach(input => {
     input.addEventListener('input', validarFormulario);
@@ -75,10 +74,9 @@ cadastroFormulario.addEventListener('submit', async (event) => {
         const resultado = await resposta.json();
 
         if (resposta.ok) {
-            // alert("Usuário cadastrado com sucesso!");
+            // Troca de pagina para o login
             console.log("Sucesso:", resultado);
             window.location.href = '/login'
-            
         } else {
             console.log("Erro no cadastro: " + (resultado.message || "Erro desconhecido"));
         }

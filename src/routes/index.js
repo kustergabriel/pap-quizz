@@ -4,10 +4,8 @@ import questions from './questionsRoutes.js'
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-// --- CONFIGURAÇÃO MANUAL DE __DIRNAME ---
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-// ----------------------------------------
 
 const routes = (app) => {
     // Rota Raiz ****DESENVOLVER****
