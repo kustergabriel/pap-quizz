@@ -1,7 +1,6 @@
 const loginUsuario = document.getElementById('form-login');
 const cadastroFormulario = document.getElementById('form-card');
 
-
 if (cadastroFormulario) {
     const botao = document.querySelector('.btn-submit'); 
     const campos = cadastroFormulario.querySelectorAll('input');
@@ -81,7 +80,7 @@ cadastroFormulario.addEventListener('submit', async (event) => {
             window.location.href = '/login'
             
         } else {
-            alert("Erro no cadastro: " + (resultado.message || "Erro desconhecido"));
+            console.log("Erro no cadastro: " + (resultado.message || "Erro desconhecido"));
         }
     } catch (erro) {
         console.error("Erro na requisição:", erro);

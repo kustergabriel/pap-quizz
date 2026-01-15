@@ -1,12 +1,29 @@
 import mongoose from "mongoose";
 import user from "../models/user.js";
 
-
 class userController {
 
     static async createUser (req,res) {
         try {
             console.log("Dados recebidos no Servidor:", req.body);
+            // Verificar se ja existe esse email ou nickname do db
+
+            const { email, nickname, cpf } = req.body
+            
+            const userInDb = await user.findOne ({
+                $or: [{email:email}, {nickname:nickname}, {cpf:cpf}]
+            })
+
+            if (userInDb) {
+                let msg = "Dados ja cadastrados"
+
+                if (userInDb.email === email) msg = "Este e-mail já está em uso.";
+                if (userInDb.nickname === nickname) msg = "Este nome de usuário já está em uso.";
+                if (userInDb.cpf === cpf) msg = "Este CPF já possui uma conta.";
+                
+                return res.status(400).json({ message: msg })
+            }
+            
             const newUser = await user.create(req.body)
             res.status(201).json({ message: `${newUser} criado com sucesso!`, newUser });
         } catch (error) {
