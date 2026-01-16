@@ -61,18 +61,12 @@ header {
 
 }
 
-#img-usuario {
-    object-fit: cover;
-    width: 80px; 
-    height: 70px;    
-    border-radius: 50%;
-    border: 1px solid #a4d3f7;
+#bem-vindo {
+    margin-right: -6px;
 }
 
-.div-bem-vindo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+.nome-boas-vindas {
+    margin: 0px;
 }
 
 section {

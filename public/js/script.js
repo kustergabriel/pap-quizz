@@ -10,6 +10,7 @@ if (cadastroFormulario) {
 
 function validarFormulario() {
     let todosPreenchidos = true;
+    const senhaCurta = campoSenha.value.length < 8
 
     campos.forEach(input => {
         if (input.value.trim() === "") {
@@ -20,7 +21,7 @@ function validarFormulario() {
     const senhasIguais = campoSenha.value === campoConfirmarSenha.value
 
     // O botão só ativa se as duas condições forem verdadeiras
-    if (todosPreenchidos && senhasIguais) {
+    if (todosPreenchidos && senhasIguais && !senhaCurta) {
         botao.disabled = false;
         botao.classList.add('active');
         campoConfirmarSenha.style.borderColor = "#dee2e6"; 
