@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema ( {
     nickname: {type:String, required:true},
     email: {type:String, required:true},
     cpf: {type: String, required: true, unique: true},
-    password: {type: String, required: true, unique: true},
+    password: {type: String, required: true},
     points: {type:Number},
     questionsRight: [questionSchema],
     questionsWrong: [questionSchema],

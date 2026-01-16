@@ -150,3 +150,11 @@ body {
     width: 16px;
 }
 
+.msg-feedback {
+    font-size: 0.85rem;
+    color: #ff4d4d;
+    display: block;
+    margin: 10px;
+    margin-left: 20px;
+    height: 1rem; /* Reserva o espaço para não "pular" o layout quando aparecer */
+}
