@@ -156,5 +156,5 @@ body {
     display: block;
     margin: 10px;
     margin-left: 20px;
-    height: 1rem; /* Reserva o espaço para não "pular" o layout quando aparecer */
+    height: 1rem; 
 }

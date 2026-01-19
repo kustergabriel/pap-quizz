@@ -127,10 +127,8 @@ loginUsuario.addEventListener('submit', async (event) => {
         const resultado = await resposta.json();
 
         if (resposta.ok) {
-            // alert("Usuário cadastrado com sucesso!");
             console.log("Sucesso:", resultado);
-            window.location.href = '/home'
-            
+            window.location.href = '/home';  
         } else {
             alert("Erro no login: " + (resultado.message || "Erro desconhecido"));
                 }

@@ -10,5 +10,6 @@ router.post('/login', userController.loginUser)
 
 // Rotas de dados
 router.get("/api/me", userController.getMe);
+router.post("/api/logout", userController.logoutUser)
 
 export default router;

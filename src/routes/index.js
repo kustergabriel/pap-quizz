@@ -1,7 +1,9 @@
 import express from 'express'
-import user from './userRoutes.js'
-import questions from './questionsRoutes.js'
+import userRoutes from './userRoutes.js'
+import questionsRoutes from './questionsRoutes.js'
+import User from '../models/user.js';
 import path from 'path';
+import userController from '../controllers/userController.js';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -15,6 +17,8 @@ function verificarAutenticacao(req, res, next) {
 }
 
 const routes = (app) => {
+    app.use(express.json());
+
     // Rota Raiz ****DESENVOLVER****
     app.get("/", (req, res) => {
         res.sendFile(path.join(__dirname, ""));
@@ -32,20 +36,33 @@ const routes = (app) => {
      
 
     // Rota de home
-    app.get("/home", verificarAutenticacao, (req,res) => {
-        res.sendFile(path.join(__dirname, "../views/homepageusr.html"));
+    app.get("/home", verificarAutenticacao, async (req,res) => {
+        try {
+        // Buscamos o usuário no banco para garantir que temos o status de ADM atualizado
+        const usuario = await User.findById(req.session.userId);
+        if (usuario && usuario.adm === true) {
+            // Se for ADM, envia a página com o botão extra
+            res.sendFile(path.join(__dirname, "../views/homepageadm.html"));
+        } else {
+            // Se for comum, envia a página padrão
+            res.sendFile(path.join(__dirname, "../views/homepageusr.html"));
+        }
+
+    } catch (error) {
+        res.status(500).send("Erro ao carregar a página inicial.");
+    }
+        
     });
     
-    // Rota de API
-    app.use(express.json(), user, questions)
+    // Rotas de API
 
+    app.use(userRoutes);
+    app.use(questionsRoutes);
+    
     app.get('/api/me', (req, res) => {
     if (!req.session.userId) {
-        // Importante: Em rotas de API, retorne JSON de erro, não redirecione para HTML!
         return res.status(401).json({ message: "Não autorizado" });
     }
-    
-    // Se estiver logado, chama o controller
     userController.getMe(req, res);
     });
 

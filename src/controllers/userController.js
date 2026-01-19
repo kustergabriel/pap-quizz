@@ -60,12 +60,14 @@ class userController {
                 console.log("BACKEND: Tentativa de senha inválida");
                 return res.status(401).json({ message: "Senha incorreta." });
             }
-               
-            req.session.userId = findUser._id; // Guardamos o ID do banco na sessão
+
+            req.session.userId = findUser._id;
             req.session.nickname = findUser.nickname;
+            req.session.adm = findUser.adm;
 
             console.log("Sessão criada para:", req.session.nickname);
-            res.status(200).json({ message: "Login realizado!" });
+            res.status(200).json({ message: "Login realizado!", adm: findUser.adm });
+            
             
         } catch (error) { 
             console.error("BACKEND ERROR:", error);
@@ -85,6 +87,20 @@ class userController {
             res.status(500).json({ message: "Erro ao buscar dados do usuário" });
         }
     }
+
+    static logoutUser (req,res) {
+        req.session.destroy((err) => { 
+        if (err) {
+            return res.status(500).json({ message: "Erro ao encerrar sessão." });
+        }
+        res.clearCookie('connect.sid'); // Limpa o cookie do navegador (nome padrão do express-session)
+        res.status(200).json({ message: "Logout realizado com sucesso!" });
+    });
+    }
+
+
+
+
 }
 
 export default userController
