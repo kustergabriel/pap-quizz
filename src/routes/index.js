@@ -24,6 +24,11 @@ const routes = (app) => {
         res.sendFile(path.join(__dirname, ""));
     });
 
+    // Rota do quiz mesmo
+    app.get("/quiz", (req,res) => {
+        res.sendFile(path.join(__dirname, "../views/perguntas.html"));
+    });
+
     // Rota de cadastro
     app.get("/cadastro", (req,res) => {
         res.sendFile(path.join(__dirname, "../views/cadusuario.html"));
@@ -38,7 +43,7 @@ const routes = (app) => {
     // Rota de home
     app.get("/home", verificarAutenticacao, async (req,res) => {
         try {
-        // Buscamos o usuário no banco para garantir que temos o status de ADM atualizado
+        // Buscamos o usuário no banco para garantir que temos o status de ADM 
         const usuario = await User.findById(req.session.userId);
         if (usuario && usuario.adm === true) {
             // Se for ADM, envia a página com o botão extra
@@ -51,10 +56,9 @@ const routes = (app) => {
     } catch (error) {
         res.status(500).send("Erro ao carregar a página inicial.");
     }
-        
     });
     
-    // Rotas de API
+    // Rotas de API que devolvem algo do servidor
 
     app.use(userRoutes);
     app.use(questionsRoutes);
