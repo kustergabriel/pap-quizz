@@ -1,7 +1,7 @@
 * {
     padding: 0;
     margin: 0;
-    box-sizing: border-box; /* Essencial para larguras funcionarem bem */
+    box-sizing: border-box;
 }
 
 body {
