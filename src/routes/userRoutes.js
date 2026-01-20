@@ -1,9 +1,15 @@
 import express from "express";
 import userController from "../controllers/userController.js";
 
-const routes = express.Router()
+const router = express.Router()
 
-routes.post('/cadastro', userController.createUser)
-routes.post('/login', userController.loginUser)
 
-export default routes;
+// Rotas de pagina
+router.post('/cadastro', userController.createUser)
+router.post('/login', userController.loginUser)
+
+// Rotas de dados
+router.get("/api/me", userController.getMe);
+router.post("/api/logout", userController.logoutUser)
+
+export default router;

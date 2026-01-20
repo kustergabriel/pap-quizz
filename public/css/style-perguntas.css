@@ -1,0 +1,119 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: white; 
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #a4d3f7;
+    border-radius: 10px;
+}
+
+
+#header-logo {
+    height: 50px;
+    width: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 15px;
+}
+
+#right-side {
+    margin-right: 15px;
+    display: flex;
+    gap: 20px;
+    font-weight: 700;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#quiz-card {
+    background-color: white;
+    width: 100%;
+    max-width: 650px;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(39, 94, 156, 0.1);
+    border: 1px solid #e1f0ff;
+}
+
+/* Cabeçalho da Pergunta (Info e Tempo) */
+#title-specifications {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f7ff;
+}
+
+#quiz-cont-ask {
+    background: #275e9c;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+#main-question {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    line-height: 1.3;
+    text-align: center;
+}
+
+/* Alternativas em Coluna (Melhor UX para leitura) */
+#alternatives-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.main-alternative {
+    width: 100%;
+    padding: 18px 25px;
+    background-color: #f8fbff;
+    border: 2px solid #e1f0ff;
+    border-radius: 12px;
+    color: #4f6166;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.main-alternative:hover {
+    background-color: #275e9c;
+    color: white;
+    border-color: #275e9c;
+    transform: translateY(-2px);
+}
+
+/* Botão de Voltar Discreto */
+#back-button {
+    margin-top: 20px;
+    color: #275e9c;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}

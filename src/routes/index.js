@@ -1,18 +1,32 @@
 import express from 'express'
-import user from './userRoutes.js'
-import questions from './questionsRoutes.js'
+import userRoutes from './userRoutes.js'
+import questionsRoutes from './questionsRoutes.js'
+import User from '../models/user.js';
 import path from 'path';
+import userController from '../controllers/userController.js';
 import { fileURLToPath } from 'url';
 
-// --- CONFIGURAÇÃO MANUAL DE __DIRNAME ---
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-// ----------------------------------------
+
+function verificarAutenticacao(req, res, next) {
+    if (req.session.userId) {
+        return next(); // Está logado, pode prosseguir
+    }
+    res.redirect('/login'); // Não está logado, vai para o login
+}
 
 const routes = (app) => {
+    app.use(express.json());
+
     // Rota Raiz ****DESENVOLVER****
     app.get("/", (req, res) => {
         res.sendFile(path.join(__dirname, ""));
+    });
+
+    // Rota do quiz mesmo
+    app.get("/quiz", (req,res) => {
+        res.sendFile(path.join(__dirname, "../views/perguntas.html"));
     });
 
     // Rota de cadastro
@@ -27,12 +41,34 @@ const routes = (app) => {
      
 
     // Rota de home
-    app.get("/home", (req,res) => {
-        res.sendFile(path.join(__dirname, "../views/homepageusr.html"));
+    app.get("/home", verificarAutenticacao, async (req,res) => {
+        try {
+        // Buscamos o usuário no banco para garantir que temos o status de ADM 
+        const usuario = await User.findById(req.session.userId);
+        if (usuario && usuario.adm === true) {
+            // Se for ADM, envia a página com o botão extra
+            res.sendFile(path.join(__dirname, "../views/homepageadm.html"));
+        } else {
+            // Se for comum, envia a página padrão
+            res.sendFile(path.join(__dirname, "../views/homepageusr.html"));
+        }
+
+    } catch (error) {
+        res.status(500).send("Erro ao carregar a página inicial.");
+    }
     });
     
-    // Rota de API
-    app.use(express.json(), user, questions)
+    // Rotas de API que devolvem algo do servidor
+
+    app.use(userRoutes);
+    app.use(questionsRoutes);
+    
+    app.get('/api/me', (req, res) => {
+    if (!req.session.userId) {
+        return res.status(401).json({ message: "Não autorizado" });
+    }
+    userController.getMe(req, res);
+    });
 
 }
 

@@ -10,6 +10,7 @@ if (cadastroFormulario) {
 
 function validarFormulario() {
     let todosPreenchidos = true;
+    const senhaCurta = campoSenha.value.length < 8
 
     campos.forEach(input => {
         if (input.value.trim() === "") {
@@ -20,23 +21,22 @@ function validarFormulario() {
     const senhasIguais = campoSenha.value === campoConfirmarSenha.value
 
     // O botão só ativa se as duas condições forem verdadeiras
-    if (todosPreenchidos && senhasIguais) {
+    if (todosPreenchidos && senhasIguais && !senhaCurta) {
         botao.disabled = false;
         botao.classList.add('active');
-        campoConfirmarSenha.style.borderColor = "#dee2e6"; // Cor padrão
+        campoConfirmarSenha.style.borderColor = "#dee2e6"; 
     } else {
         botao.disabled = true;
         botao.classList.remove('active');
         
         // Feedback visual se o usuário já começou a digitar a confirmação e está errada
         if (campoConfirmarSenha.value.length > 0 && !senhasIguais) {
-            campoConfirmarSenha.style.borderColor = "#ff4d4d"; // Borda vermelha de erro
+            campoConfirmarSenha.style.borderColor = "#ff4d4d"; 
         } else {
             campoConfirmarSenha.style.borderColor = "#dee2e6";
         }
     }
 }
-
 
 campos.forEach(input => {
     input.addEventListener('input', validarFormulario);
@@ -75,12 +75,31 @@ cadastroFormulario.addEventListener('submit', async (event) => {
         const resultado = await resposta.json();
 
         if (resposta.ok) {
-            // alert("Usuário cadastrado com sucesso!");
+            // Troca de pagina para o login
             console.log("Sucesso:", resultado);
             window.location.href = '/login'
-            
         } else {
-            console.log("Erro no cadastro: " + (resultado.message || "Erro desconhecido"));
+            const erroNickname = document.getElementById('msg-erro-nickname');
+            const erroCpf = document.getElementById('msg-erro-cpf');
+            const erroEmail = document.getElementById('msg-erro-email')
+
+            erroCpf.textContent = ''
+            erroEmail.textContent = ''
+            erroNickname.textContent = ''
+
+            if (resultado.message.includes("nome de usuário") ) {
+                erroNickname.textContent = resultado.message;
+                document.getElementById('nickname').style.borderColor = "#ff4d4d";
+            } else if (resultado.message.includes("CPF")) {
+                erroCpf.textContent = resultado.message;
+                document.getElementById('cpf').style.borderColor = "#ff4d4d";
+            } else if (resultado.message.includes("e-mail")) {
+                erroEmail.textContent = resultado.message;
+                document.getElementById('email').style.borderColor = "#ff4d4d";
+            } else {
+                // Caso seja um erro genérico
+                alert(resultado.message);
+            }
         }
     } catch (erro) {
         console.error("Erro na requisição:", erro);
@@ -108,10 +127,8 @@ loginUsuario.addEventListener('submit', async (event) => {
         const resultado = await resposta.json();
 
         if (resposta.ok) {
-            // alert("Usuário cadastrado com sucesso!");
             console.log("Sucesso:", resultado);
-            window.location.href = '/home'
-            
+            window.location.href = '/home';  
         } else {
             alert("Erro no login: " + (resultado.message || "Erro desconhecido"));
                 }
