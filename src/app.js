@@ -15,10 +15,10 @@ conexao.on('error', (erro)=> {
 })
 
 app.use(session({
-    secret: process.env.SECRET, // Use uma string aleatória
+    secret: process.env.SECRET, 
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false } // Em produção com HTTPS, use true
+    cookie: { secure: false } // Em produção com HTTPS, usar true
 }));
 
 app.use(express.json());
