@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema ( {
     cpf: {type: String, required: true, unique: true},
     password: {type: String, required: true},
     points: {type:Number},
-    adm: {type: Boolean, default: false},
+    adm: {type: Boolean, default: false,required: true},
     questionsRight: [questionSchema],
     questionsWrong: [questionSchema],
     questionsVinculed: [questionSchema]
