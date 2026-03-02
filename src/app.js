@@ -15,7 +15,7 @@ conexao.on('error', (erro)=> {
 })
 
 app.use(session({
-    secret: "ASUIDYASHUIDSAIDY17283612HDJKSDUY8126372HDSAI", // Use uma string aleatória
+    secret: process.env.SECRET, // Use uma string aleatória
     resave: false,
     saveUninitialized: false,
     cookie: { secure: false } // Em produção com HTTPS, use true
