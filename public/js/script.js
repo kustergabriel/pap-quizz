@@ -137,3 +137,11 @@ loginUsuario.addEventListener('submit', async (event) => {
     }
 })
 }
+
+const btnIrParaCadastro = document.getElementById('btn-ir-para-cadastro');
+
+if (btnIrParaCadastro) {
+    btnIrParaCadastro.addEventListener('click', () => {
+        window.location.href = '/cadastro';
+    });
+}
