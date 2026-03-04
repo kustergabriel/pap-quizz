@@ -1,7 +1,7 @@
 import express from 'express'
 import userRoutes from './userRoutes.js'
 import questionsRoutes from './questionsRoutes.js'
-import User from '../models/user.js';
+import User from '../models/userSchema.js';
 import path from 'path';
 import userController from '../controllers/userController.js';
 import { fileURLToPath } from 'url';

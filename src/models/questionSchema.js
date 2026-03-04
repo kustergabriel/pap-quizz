@@ -4,8 +4,8 @@ const questionSchema = new mongoose.Schema({
     id: { type: mongoose.Schema.Types.ObjectId },
     title: { type: String, required: true }, // type of the question
     description: { type: String, required: true }, // ask
-    options: {type: String, required: true},
-    correctOption: {type: Array, required: true},
+    options: {type: [String], required: true},
+    correctOption: {type: String, required: true},
     difficult: {type: Number, required: true}
 }, { versionKey: false } )
 

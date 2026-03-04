@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import user from "../models/user.js";
+import user from "../models/userSchema.js";
 import bcrypt from 'bcrypt';
 
 class userController {
