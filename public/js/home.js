@@ -1,12 +1,16 @@
-const botaoExit = document.getElementById('header-exit');
-
 document.addEventListener('DOMContentLoaded', async () => { 
+    // 1. Carregar dados do Usuário
     try {
-        const resposta = await fetch('/api/me')
-        const dados = await resposta.json()
+        const resposta = await fetch('/api/me');
+        const dados = await resposta.json();
+        
         if (resposta.ok) {
-            document.getElementById('bem-vindo').textContent = `Bem-vindo, ${dados.nickname}!`;
-            document.getElementById('id-pontos').textContent = `${dados.points} pontos`;
+            // Verifica se os elementos existem antes de tentar mudar o texto
+            const elBemVindo = document.getElementById('bem-vindo');
+            const elPontos = document.getElementById('id-pontos');
+            
+            if (elBemVindo) elBemVindo.textContent = `Bem-vindo, ${dados.nickname}!`;
+            if (elPontos) elPontos.textContent = `${dados.points} pontos`;
         } else {
             window.location.href = '/login';
         }
@@ -14,19 +18,79 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error("Erro ao carregar dados do usuário:", error);
     }
 
-})
+    const botaoExit = document.getElementById('header-exit');
+    if (botaoExit) { // Só adiciona o evento se o botão existir na página pode acarretar em algum erro
+        botaoExit.addEventListener('click', async () => {
+            try {
+                const resposta = await fetch('/api/logout', { method: 'POST' });
+                if (resposta.ok) {
+                    window.location.href = '/login';
+                } else {
+                    alert("Erro ao tentar sair.");
+                }
+            } catch (error) {
+                console.error("Erro no logout:", error);
+            }
+        });
+    }
 
+    // Escolher a dificuldade do jogo
+    const botaoComecar = document.getElementById('btn-começar-quiz');
+    const seletorDificuldade = document.getElementById('select-dificuldade');
 
-botaoExit.addEventListener('click', async (event) => {
+    if (botaoComecar) {
+        botaoComecar.addEventListener('click', async () => {
+            const nivel = parseInt(seletorDificuldade.value);
+            
+            try {
+                const resposta = await fetch('/api/quiz/start', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ difficulty: nivel })
+                });
+
+                const dados = await resposta.json();
+
+                if (resposta.ok) {
+                    window.location.href = `/quiz?sessionId=${dados.sessionId}&diff=${nivel}`;
+                } else {
+                    alert("Erro ao iniciar o quiz no servidor.");
+                }
+            } catch (error) {
+                console.error("Erro na requisição de início:", error);
+            }
+        });
+    }
+
+});
+
+async function iniciarJogo(nivelDificuldade) {
     try {
-    const resposta = await fetch('/api/logout', { method: 'POST' });
-    if (resposta.ok) {
-            // 2. Se o servidor limpou tudo, voltamos para o login
-            window.location.href = '/login';
+        const resposta = await fetch('/api/quiz/start', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ difficulty: nivelDificuldade })
+        });
+
+        const dados = await resposta.json();
+
+        if (resposta.ok) {
+            // Redireciona passando o ID da sessão e a dificuldade na URL
+            window.location.href = `/quiz?sessionId=${dados.sessionId}&diff=${nivelDificuldade}`;
         } else {
-            alert("Erro ao tentar sair.");
+            alert("Erro ao iniciar o quiz. Tente novamente.");
         }
     } catch (error) {
-        console.error("Erro no logout:", error);
+        console.error("Erro na requisição:", error);
     }
-}) 
+}
+
+function prepararJogo() {
+    const seletor = document.getElementById('select-dificuldade');
+    const nivel = parseInt(seletor.value);
+
+    console.log("Iniciando jogo no nível:", nivel);
+
+    // 2. Chama a sua função iniciarJogo que já faz o POST
+    iniciarJogo(nivel);
+}

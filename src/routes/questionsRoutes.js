@@ -1,14 +1,7 @@
 import express from "express";
 import questionController from "../controllers/questionController.js";
-
+import { verificarAdm } from '../middlewares/auth.js';
 const routes = express.Router();
-
-function verificarAdm(req, res, next) {
-    if (req.session.userId && req.session.adm === true) {
-        return next();
-    }
-    res.status(403).json({ message: "Acesso negado. Apenas administradores podem fazer isso." });
-}
 
 // Rotas de pagina
 routes.get("/admin/nova-pergunta", verificarAdm, (req, res) => {
@@ -23,9 +16,9 @@ routes.get("/admin/nova-pergunta", verificarAdm, (req, res) => {
 
 // Rotas de API
 // Pega pergunta aleatoria
-routes.get('/api/perguntas/aleatoria', questionController.getPergunta);
+routes.get('/api/perguntas/aleatoria', questionController.getPerguntasSessao);
 
-// Apenas ADM pode cadastrar perguntas novas
+// Cadastrar perguntas novas
 routes.post('/api/perguntas', questionController.cadastrarPergunta);
 
 export default routes;

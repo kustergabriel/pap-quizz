@@ -12,21 +12,24 @@ body {
     flex-direction: column;
 }
 
+h1, h2, h3 {
+    color: #275e9c; 
+}
+
+
 header {
     margin: 20px;
+    padding: 10px; 
     display: flex;
     align-items: center;
     justify-content: space-between;
     border: 1px solid #a4d3f7;
-    border-radius: 10px;
+    border-radius: 12px; 
 }
-
 
 #header-logo {
     height: 50px;
     width: auto;
-    margin-top: 15px;
-    margin-bottom: 15px;
     margin-left: 15px;
 }
 
@@ -34,7 +37,21 @@ header {
     margin-right: 15px;
     display: flex;
     gap: 20px;
-    font-weight: 700;
+    align-items: center;
+}
+
+#header-username {
+    color: #4f6166;
+    font-size: 17px;
+}
+
+#header-points {
+    padding: 6px 14px;
+    border: 1px solid #a4d3f7;
+    border-radius: 10px;
+    color: #4f6166;
+    background-color: #a4d3f7;
+    font-size: 17px;
 }
 
 main {
@@ -53,25 +70,29 @@ main {
     padding: 40px;
     border-radius: 20px;
     box-shadow: 0 10px 25px rgba(39, 94, 156, 0.1);
-    border: 1px solid #e1f0ff;
+    border: 1px solid #a4d3f7; 
 }
 
-/* Cabeçalho da Pergunta (Info e Tempo) */
 #title-specifications {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
     padding-bottom: 15px;
-    border-bottom: 2px solid #f0f7ff;
+    border-bottom: 1px solid #a4d3f7;
 }
 
 #quiz-cont-ask {
     background: #275e9c;
     color: white;
-    padding: 4px 12px;
-    border-radius: 20px;
+    padding: 5px 15px;
+    border-radius: 15px; 
     font-size: 0.9rem;
+    font-weight: bold;
+}
+
+#quiz-time {
+    color: #4f6166;
 }
 
 #main-question {
@@ -81,7 +102,7 @@ main {
     text-align: center;
 }
 
-/* Alternativas em Coluna (Melhor UX para leitura) */
+
 #alternatives-container {
     display: flex;
     flex-direction: column;
@@ -90,30 +111,33 @@ main {
 
 .main-alternative {
     width: 100%;
-    padding: 18px 25px;
-    background-color: #f8fbff;
-    border: 2px solid #e1f0ff;
-    border-radius: 12px;
-    color: #4f6166;
+    padding: 15px 25px;
+    background-color: white;
+    border: 1px solid #a4d3f7; 
+    border-radius: 15px;    
+    color: #4f6166;   
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
-    text-align: left;
+    transition: all 0.3s ease;
+    text-align: center;
 }
 
 .main-alternative:hover {
-    background-color: #275e9c;
-    color: white;
-    border-color: #275e9c;
+    background-color: #a4d3f7; 
+    color: #275e9c;
     transform: translateY(-2px);
 }
 
-/* Botão de Voltar Discreto */
 #back-button {
-    margin-top: 20px;
-    color: #275e9c;
+    margin-top: 25px;
+    color: #4f6166; 
     text-decoration: none;
     font-weight: bold;
     cursor: pointer;
+    transition: color 0.3s;
+}
+
+#back-button:hover {
+    color: #275e9c; 
 }

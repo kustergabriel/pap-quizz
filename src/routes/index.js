@@ -4,19 +4,12 @@ import questionsRoutes from './questionsRoutes.js'
 import User from '../models/userSchema.js';
 import path from 'path';
 import userController from '../controllers/userController.js';
+import { verificarAutenticacao } from '../middlewares/auth.js';
 import { fileURLToPath } from 'url';
+import quizRoutes from "./quizRoutes.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-function verificarAutenticacao(req, res, next) {
-    // Impede que o navegador guarde a página no cache
-    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-    if (req.session.userId) {
-        return next(); // Está logado, pode prosseguir
-    }
-    res.redirect('/login'); // Não está logado, vai para o login
-}
 
 const routes = (app) => {
     app.use(express.json());
@@ -64,6 +57,7 @@ const routes = (app) => {
 
     app.use(userRoutes);
     app.use(questionsRoutes);
+    app.use(quizRoutes);
     
     app.get('/api/me', (req, res) => {
     if (!req.session.userId) {
