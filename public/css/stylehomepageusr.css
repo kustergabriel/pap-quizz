@@ -9,7 +9,7 @@ body {
 
 p {
     color: #4f6166;
-    font-size: 17px;
+    font-size: 16px;
 }
 
 #h1-centering {
@@ -62,9 +62,19 @@ header {
 
 }
 
-#btn-começar-quiz {
+.select-estilizado {
+    margin-bottom: 15px;
+    padding: 5px;
+    border: 1px solid #a4d3f7;
+    border-radius: 10px;
+    color: #275e9c;
+    font-family: 'Nunito', sans-serif;
+    outline: none;
     cursor: pointer;
-    user-select: none; 
+}
+
+.card-acao {
+    cursor: default; /* Como não é mais um link direto, removemos a mãozinha do card todo */
 }
 
 #bem-vindo {

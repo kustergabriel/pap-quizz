@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     const botaoExit = document.getElementById('header-exit');
-    if (botaoExit) { // Só adiciona o evento se o botão existir na página pode acarretar em algum erro
+    if (botaoExit) { // Só adiciona o evento se o botão existir na página, pode acarretar em algum erro se nao tivesse essa validacao
         botaoExit.addEventListener('click', async () => {
             try {
                 const resposta = await fetch('/api/logout', { method: 'POST' });
@@ -63,34 +63,3 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
 });
-
-async function iniciarJogo(nivelDificuldade) {
-    try {
-        const resposta = await fetch('/api/quiz/start', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ difficulty: nivelDificuldade })
-        });
-
-        const dados = await resposta.json();
-
-        if (resposta.ok) {
-            // Redireciona passando o ID da sessão e a dificuldade na URL
-            window.location.href = `/quiz?sessionId=${dados.sessionId}&diff=${nivelDificuldade}`;
-        } else {
-            alert("Erro ao iniciar o quiz. Tente novamente.");
-        }
-    } catch (error) {
-        console.error("Erro na requisição:", error);
-    }
-}
-
-function prepararJogo() {
-    const seletor = document.getElementById('select-dificuldade');
-    const nivel = parseInt(seletor.value);
-
-    console.log("Iniciando jogo no nível:", nivel);
-
-    // 2. Chama a sua função iniciarJogo que já faz o POST
-    iniciarJogo(nivel);
-}

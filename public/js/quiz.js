@@ -52,15 +52,17 @@ function exibirPergunta() {
     textoPergunta.textContent = perguntaAtual.ask;
     contadorTexto.textContent = `Questão ${indicePerguntaAtual + 1}/${totalPerguntas}`;
 
-    // Limpa alternativas anteriores
     containerAlternativas.innerHTML = '';
 
-    // Cria os botões para cada alternativa
     perguntaAtual.options.forEach((opcao, index) => {
         const botao = document.createElement('button');
         botao.classList.add('main-alternative');
         botao.textContent = opcao;
-        botao.onclick = () => verificarResposta(index, perguntaAtual.correct);
+        
+        botao.addEventListener('click', () => {
+            verificarResposta(index, perguntaAtual.correct);
+        });
+        
         containerAlternativas.appendChild(botao);
     });
 }
@@ -99,13 +101,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error("Erro ao carregar dados do usuário:", error);
     }
 
+    carregarPerguntas()
 })
 
 function finalizarQuiz() {
     // Você pode redirecionar para uma página de resultados passando o sessionId
     window.location.href = `/home`;
 }
-
-
-
-document.addEventListener('DOMContentLoaded', buscarNovaPergunta);

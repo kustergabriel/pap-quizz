@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { QuizSession } from "../models/quizSessionSchema.js";
+import { selectFields } from "express-validator/lib/field-selection.js";
 
 class QuizSessionController {
     // Inicia uma sessao do quiz
@@ -32,7 +33,12 @@ class QuizSessionController {
 
             if (session.currentQuestion > session.totalQuestions) {
                 session.isFinished = true;
-                // AQUI: Você pode chamar uma função para somar os pontos no perfil do User!
+                
+                await User.findByIdAndUpdate(
+                session.userId, 
+                { $inc: { points: pontosGanhos } } // $inc soma ao valor atual sem precisar ler antes
+            );
+            
             }
 
             await session.save();
