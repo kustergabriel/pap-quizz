@@ -34,7 +34,6 @@ const routes = (app) => {
         res.sendFile(path.join(__dirname, "../views/cadastrologin.html"));
     });
      
-
     // Rota de home
     app.get("/home", verificarAutenticacao, async (req,res) => {
         try {
@@ -54,7 +53,6 @@ const routes = (app) => {
     });
     
     // Rotas de API que devolvem algo do servidor
-
     app.use(userRoutes);
     app.use(questionsRoutes);
     app.use(quizRoutes);

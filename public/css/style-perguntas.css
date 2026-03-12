@@ -73,6 +73,17 @@ main {
     border: 1px solid #a4d3f7; 
 }
 
+#quiz-time {
+    color: #333 !important; /* Força uma cor escura */
+    font-weight: bold;
+    font-size: 1.2rem;
+    display: inline-block !important; /* Garante que não seja 'none' */
+    visibility: visible !important;
+    background-color: #f0f0f0; /* Um fundo cinza só para teste */
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
 #title-specifications {
     display: flex;
     justify-content: space-between;

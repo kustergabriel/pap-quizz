@@ -14,18 +14,13 @@ async function cadastrarNovaPergunta () {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(dadosPergunta)
         });
-
         const resultado = await resposta.json();
-
         if (resposta.ok) {
             alert("Pergunta cadastrada com sucesso!");
-
         } else {
             alert("Erro: " + resultado.message);
         }
     } catch (error) {
         console.error("Erro na requisição:", error);
     }
-
-
 }

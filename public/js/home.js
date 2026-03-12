@@ -1,11 +1,9 @@
 document.addEventListener('DOMContentLoaded', async () => { 
-    // 1. Carregar dados do Usuário
     try {
         const resposta = await fetch('/api/me');
         const dados = await resposta.json();
         
         if (resposta.ok) {
-            // Verifica se os elementos existem antes de tentar mudar o texto
             const elBemVindo = document.getElementById('bem-vindo');
             const elPontos = document.getElementById('id-pontos');
             

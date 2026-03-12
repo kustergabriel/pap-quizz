@@ -5,25 +5,52 @@ const dificuldade = urlParams.get('diff');
 let perguntas = [];
 let indicePerguntaAtual = 0;
 let totalPerguntas = 5;
+let tempoRestante = 10;
+let cronometro;
+
+// Timer para cada pergunta
+function iniciarTimer() {
+    tempoRestante = 10; 
+    const elTimer = document.getElementById('quiz-time');
+    if (elTimer) elTimer.textContent = `Tempo: 10s`;
+
+    clearInterval(cronometro); 
+    cronometro = setInterval(() => {
+        tempoRestante--;
+        if (elTimer) elTimer.textContent = `Tempo: ${tempoRestante}s`;
+
+        if (tempoRestante <= 0) {
+            clearInterval(cronometro);
+            pularPorTempoEsgotado();
+        }
+    }, 1000);
+}
+
+function pularPorTempoEsgotado() {
+    // Simulamos um clique errado enviando um objeto "fake"
+    const dummyButton = { textContent: "TEMPO ESGOTADO" };
+    verificarResposta(dummyButton, "RESPOSTA_INCORRETA_SISTEMA");
+}
 
 // Verificar resposta
 async function verificarResposta(botaoClicado, valorCorreto) {
+    // PARA o cronômetro assim que o usuário responder (ou o tempo acabar)
+    clearInterval(cronometro);
+
     const valorEscolhido = botaoClicado.textContent;
     const isCorrect = valorEscolhido === valorCorreto;
     const todosBotoes = document.querySelectorAll('.main-alternative');
 
-    // 1. Bloqueia todos os botões
     todosBotoes.forEach(b => b.disabled = true);
 
-    // 2. Pinta o botão clicado
-    if (isCorrect) {
-        botaoClicado.style.backgroundColor = "#73d68a"; // Verde
+    // SÓ tenta mudar o estilo se o botão for real (tiver a propriedade style)
+    if (botaoClicado.style) {
+        botaoClicado.style.backgroundColor = isCorrect ? "#73d68a" : "#dc3545";
         botaoClicado.style.color = "white";
-    } else {
-        botaoClicado.style.backgroundColor = "#dc3545"; // Vermelho
-        botaoClicado.style.color = "white";
+    }
 
-        // 3. Mostra qual era a correta para o usuário aprender
+    // Se errou (ou acabou o tempo), mostra a correta
+    if (!isCorrect) {
         todosBotoes.forEach(b => {
             if (b.textContent === valorCorreto) {
                 b.style.backgroundColor = "#73d68a";
@@ -32,16 +59,14 @@ async function verificarResposta(botaoClicado, valorCorreto) {
         });
     }
 
-    // 4. Sincroniza com o Banco de Dados
+    // O fetch continua igual, enviando isCorrect: false se o tempo acabou
     try {
         await fetch('/api/quiz/update', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ sessionId, isCorrect })
         });
-    } catch (error) {
-        console.error("Erro ao salvar progresso:", error);
-    }
+    } catch (error) { console.error(error); }
 
     // 5. Próxima pergunta após 2 segundos
     setTimeout(() => {
@@ -56,15 +81,15 @@ async function verificarResposta(botaoClicado, valorCorreto) {
 
 function exibirPergunta() {
     const perguntaAtual = perguntas[indicePerguntaAtual];
-    if (!perguntaAtual) return; // Segurança extra
-
-    const elTitulo = document.getElementById('title-specifications');
-    if (elTitulo) elTitulo.textContent = perguntaAtual.title;
-
-    textoPergunta.textContent = perguntaAtual.description;
     
-    // Use perguntas.length em vez da variável fixa se quiser ser mais dinâmico
-    contadorTexto.textContent = `Questão ${indicePerguntaAtual + 1}/${perguntas.length}`;
+    const elCategoria = document.getElementById('quiz-category');
+    if (elCategoria) elCategoria.textContent = perguntaAtual.title;
+
+    const contadorTexto = document.getElementById('quiz-cont-ask');
+    if (contadorTexto) contadorTexto.textContent = `Questão ${indicePerguntaAtual + 1}/${perguntas.length}`;
+
+    const textoPergunta = document.getElementById('main-question');
+    textoPergunta.textContent = perguntaAtual.description;
 
     containerAlternativas.innerHTML = '';
 
@@ -79,6 +104,7 @@ function exibirPergunta() {
         });
         
         containerAlternativas.appendChild(botao);
+        iniciarTimer();
     });
 }
 
@@ -119,6 +145,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     carregarPerguntas()
 })
+
+
 
 function finalizarQuiz() {
     // Você pode redirecionar para uma página de resultados passando o sessionId

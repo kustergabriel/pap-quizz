@@ -13,7 +13,6 @@ routes.get("/admin/nova-pergunta", verificarAdm, (req, res) => {
     }
 });
 
-
 // Rotas de API
 // Pega pergunta aleatoria
 routes.get('/api/perguntas/aleatoria', questionController.getPerguntasSessao);

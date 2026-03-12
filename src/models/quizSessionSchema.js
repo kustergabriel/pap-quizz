@@ -7,7 +7,8 @@ const quizSessionSchema = new mongoose.Schema({
     currentQuestion: { type: Number, default: 1 },
     totalQuestions: { type: Number, default: 5 },
     isFinished: { type: Boolean, default: false },
-    createdAt: { type: Date, default: Date.now }
+    createdAt: { type: Date, default: Date.now },
+    lastQuestionAt: { type: Date, default: Date.now }
 }, { versionKey: false } )
 
 export const QuizSession = mongoose.model('sessions', quizSessionSchema);
