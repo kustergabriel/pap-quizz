@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema ( {
     email: {type:String, required:true},
     cpf: {type: String, required: true, unique: true},
     password: {type: String, required: true},
-    points: {type:Number},
+    points: { type: Number, default: 0 },
     adm: {type: Boolean, default: false,required: true},
     questionsRight: [questionSchema],
     questionsWrong: [questionSchema],

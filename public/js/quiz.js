@@ -7,24 +7,32 @@ let indicePerguntaAtual = 0;
 let totalPerguntas = 5;
 
 // Verificar resposta
-async function verificarResposta(indiceEscolhido, indiceCorreto) {
-    const isCorrect = indiceEscolhido === indiceCorreto;
-    const botoes = document.querySelectorAll('.main-alternative');
+async function verificarResposta(botaoClicado, valorCorreto) {
+    const valorEscolhido = botaoClicado.textContent;
+    const isCorrect = valorEscolhido === valorCorreto;
+    const todosBotoes = document.querySelectorAll('.main-alternative');
 
-    // Desabilita botões para evitar cliques duplos
-    botoes.forEach(b => b.disabled = true);
+    // 1. Bloqueia todos os botões
+    todosBotoes.forEach(b => b.disabled = true);
 
-    // Feedback Visual (Verde para certo, Vermelho para errado)
-    botoes[indiceEscolhido].style.backgroundColor = isCorrect ? "#73d68a" : "#dc3545";
-    botoes[indiceEscolhido].style.color = "white";
-    
-    // Mostra a correta caso o usuário tenha errado
-    if (!isCorrect) {
-        botoes[indiceCorreto].style.backgroundColor = "#73d68a";
-        botoes[indiceCorreto].style.color = "white";
+    // 2. Pinta o botão clicado
+    if (isCorrect) {
+        botaoClicado.style.backgroundColor = "#73d68a"; // Verde
+        botaoClicado.style.color = "white";
+    } else {
+        botaoClicado.style.backgroundColor = "#dc3545"; // Vermelho
+        botaoClicado.style.color = "white";
+
+        // 3. Mostra qual era a correta para o usuário aprender
+        todosBotoes.forEach(b => {
+            if (b.textContent === valorCorreto) {
+                b.style.backgroundColor = "#73d68a";
+                b.style.color = "white";
+            }
+        });
     }
 
-    // ENVIA PARA O BACKEND: Atualiza o progresso na sessão do MongoDB
+    // 4. Sincroniza com o Banco de Dados
     try {
         await fetch('/api/quiz/update', {
             method: 'POST',
@@ -32,13 +40,13 @@ async function verificarResposta(indiceEscolhido, indiceCorreto) {
             body: JSON.stringify({ sessionId, isCorrect })
         });
     } catch (error) {
-        console.error("Erro ao sincronizar progresso:", error);
+        console.error("Erro ao salvar progresso:", error);
     }
 
-    // Espera 2 segundos e vai para a próxima ou finaliza
+    // 5. Próxima pergunta após 2 segundos
     setTimeout(() => {
         indicePerguntaAtual++;
-        if (indicePerguntaAtual < totalPerguntas) {
+        if (indicePerguntaAtual < perguntas.length) {
             exibirPergunta();
         } else {
             finalizarQuiz();
@@ -48,19 +56,26 @@ async function verificarResposta(indiceEscolhido, indiceCorreto) {
 
 function exibirPergunta() {
     const perguntaAtual = perguntas[indicePerguntaAtual];
+    if (!perguntaAtual) return; // Segurança extra
+
+    const elTitulo = document.getElementById('title-specifications');
+    if (elTitulo) elTitulo.textContent = perguntaAtual.title;
+
+    textoPergunta.textContent = perguntaAtual.description;
     
-    textoPergunta.textContent = perguntaAtual.ask;
-    contadorTexto.textContent = `Questão ${indicePerguntaAtual + 1}/${totalPerguntas}`;
+    // Use perguntas.length em vez da variável fixa se quiser ser mais dinâmico
+    contadorTexto.textContent = `Questão ${indicePerguntaAtual + 1}/${perguntas.length}`;
 
     containerAlternativas.innerHTML = '';
 
-    perguntaAtual.options.forEach((opcao, index) => {
+    perguntaAtual.options.forEach((opcao) => {
         const botao = document.createElement('button');
         botao.classList.add('main-alternative');
         botao.textContent = opcao;
         
         botao.addEventListener('click', () => {
-            verificarResposta(index, perguntaAtual.correct);
+            // Passamos o botão e a resposta correta
+            verificarResposta(botao, perguntaAtual.correctOption);
         });
         
         containerAlternativas.appendChild(botao);
@@ -74,6 +89,7 @@ const contadorTexto = document.getElementById('quiz-cont-ask');
 
 async function carregarPerguntas() {
     try {
+        
         const resposta = await fetch(`/api/perguntas/sessao?diff=${dificuldade}`);
         perguntas = await resposta.json();
 

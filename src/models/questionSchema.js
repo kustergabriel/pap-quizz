@@ -6,7 +6,7 @@ const questionSchema = new mongoose.Schema({
     description: { type: String, required: true }, // ask
     options: {type: [String], required: true},
     correctOption: {type: String, required: true},
-    difficulty: {type: Number, required: true}
+    difficult: {type: Number, required: true}
 }, { versionKey: false } )
 
 const question = mongoose.model('questions', questionSchema)
