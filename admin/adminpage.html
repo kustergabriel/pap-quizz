@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Admin Panel</title>
+    <link rel="stylesheet" href="admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="header">
+    <h1>Quiz App Admin Panel</h1>
+</header>
+
+<nav class="nav">
+    <a class="active">Visão Geral</a>
+    <a>Usuários</a>
+    <a>Quizzes</a>
+    <a>Questões</a>
+</nav>
+
+<main class="container">
+
+    <!-- CARDS -->
+    <section class="cards">
+        <div class="card">
+            <p>Total Usuários</p>
+            <h2>5</h2>
+        </div>
+
+        <div class="card">
+            <p>Jogando agora</p>
+            <h2 class="green">2</h2>
+        </div>
+
+        <div class="card">
+            <p>Total Questões</p>
+            <h2 class="purple">5</h2>
+        </div>
+
+        <div class="card">
+            <p>Pontuação média</p>
+            <h2 class="blue">87%</h2>
+        </div>
+    </section>
+
+    <!-- PARTE DE BAIXO -->
+    <section class="bottom">
+
+        <!-- QUIZZES -->
+        <div class="box">
+            <h3>Quizzes recentes</h3>
+
+            <div class="quiz">
+                <div>
+                    <strong>Modo iniciante</strong>
+                    <p>5 questões - 30 segundos cada pergunta</p>
+                </div>
+                <span class="badge published">Published</span>
+            </div>
+
+            <div class="quiz">
+                <div>
+                    <strong>Modo amador</strong>
+                    <p>8 questões - 25 segundos cada pergunta</p>
+                </div>
+                <span class="badge published">Published</span>
+            </div>
+
+            <div class="quiz">
+                <div>
+                    <strong>Modo pro</strong>
+                    <p>10 questões - 20 segundos cada pergunta</p>
+                </div>
+                <span class="badge playing">Jogando agora</span>
+            </div>
+        </div>
+
+        <!-- DISTRIBUIÇÃO -->
+        <div class="box">
+            <h3>Distribuição de perguntas</h3>
+
+            <div class="progress-group">
+                <div class="progress-label">
+                    <span>Perguntas fáceis</span>
+                    <span>2 questões</span>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar green-bar" style="width: 80%;"></div>
+                </div>
+            </div>
+
+            <div class="progress-group">
+                <div class="progress-label">
+                    <span>Perguntas médias</span>
+                    <span>3 questões</span>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar yellow-bar" style="width: 90%;"></div>
+                </div>
+            </div>
+
+            <div class="progress-group">
+                <div class="progress-label">
+                    <span>Perguntas difíceis</span>
+                    <span>0 questões</span>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar gray-bar" style="width: 10%;"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+</body>
+</html>
