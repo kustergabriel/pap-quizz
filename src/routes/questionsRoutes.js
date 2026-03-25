@@ -1,5 +1,6 @@
 import express from "express";
 import questionController from "../controllers/questionController.js";
+import QuizSessionController from "../controllers/quizSessionController.js";
 
 const routes = express.Router();
 
@@ -20,8 +21,9 @@ routes.get("/admin/nova-pergunta", verificarAdm, (req, res) => {
     }
 });
 
-
 // Rotas de API
+routes.post('/api/quiz/start', QuizSessionController.startSession);
+routes.post('/api/quiz/update', QuizSessionController.updateProgress);
 // Pega pergunta aleatoria
 routes.get('/api/perguntas/aleatoria', questionController.getPergunta);
 

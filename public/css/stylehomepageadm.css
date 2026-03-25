@@ -160,3 +160,30 @@ article {
 #h2-how-work {
     padding: 18px;
 }
+
+.select-estilizado {
+    margin: 15px 0;
+    padding: 8px;
+    border: 1px solid #a4d3f7;
+    border-radius: 8px;
+    background-color: white;
+    color: #275e9c;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    width: 80%;
+    cursor: pointer;
+    outline: none;
+}
+
+.select-estilizado:focus {
+    border-color: #275e9c;
+}
+
+/* Como o card agora é um div, precisamos garantir que o cursor mude */
+.card-acao {
+    cursor: default;
+}
+
+.botao-visual {
+    cursor: pointer;
+}
