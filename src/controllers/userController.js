@@ -81,7 +81,8 @@ class userController {
             if (!currentUser) return res.status(404).json({ message: "Usuário não encontrado" });
             res.status(200).json({
             nickname: currentUser.nickname,
-            points: currentUser.points || 0
+            points: currentUser.points || 0,
+            adm: currentUser.adm
             });
         } catch (error) {
             res.status(500).json({ message: "Erro ao buscar dados do usuário" });

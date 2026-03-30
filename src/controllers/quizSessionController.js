@@ -32,8 +32,6 @@ class QuizSessionController {
 
             if (acertou) session.correctAnswers += 1;
 
-            // ✅ CORREÇÃO: incrementa PRIMEIRO, depois checa se terminou.
-            // Antes checava antes de incrementar, encerrando o quiz na última pergunta
             // sem deixar o usuário respondê-la.
             session.currentQuestion += 1;
             session.lastQuestionAt = Date.now();

@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const btnComecar = document.querySelector('#btn-comecar-quiz');
     const selectDificuldade = document.querySelector('#select-dificuldade');
+    const botaoADM = document.querySelector('#botaoadm');
 
     try {
         const resposta = await fetch('/api/me');
@@ -42,6 +43,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             } catch (error) {
                 console.error("Erro ao iniciar quiz:", error);
             }
+        });
+    }
+
+    if (botaoADM) {
+        botaoADM.addEventListener('click', async () => {
+            window.location.href = '/adm';
         });
     }
 });

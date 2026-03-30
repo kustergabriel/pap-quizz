@@ -59,6 +59,23 @@ const routes = (app) => {
         res.status(500).send("Erro ao carregar a página inicial.");
     }
     });
+
+    // Rota de administrador
+    app.get("/adm", verificarAutenticacao, async (req,res) => {
+        try {
+        // Buscamos o usuário no banco para garantir que temos o status de ADM 
+        const usuario = await User.findById(req.session.userId);
+        if (usuario && usuario.adm === true) {
+            // Se for ADM, envia a página com o botão extra
+            res.sendFile(path.join(__dirname, "../views/adminpage.html"));
+        } else {
+            res.status(403).send("Acesso nao autorizado!")
+        }
+
+    } catch (error) {
+        res.status(500).send("Erro ao carregar a página inicial.");
+    }
+    });
     
     // Rotas de API que devolvem algo do servidor
 
