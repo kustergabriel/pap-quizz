@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="PT-BR">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,75 +7,116 @@
     <link rel="stylesheet" href="css/stylehomepageusr.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="/js/lucide-local.js"></script>
 </head>
 <body>
-
-    <header>
-        <div class = "div-bem-vindo">
-            <p id="bem-vindo">Bem-Vindo(a),</p> <!-- Mostra o nome do usuario, e a foto dele-->
-            <p id="nome-greetins" class="nome=boas-vindas"></p>
-        </div>
-        <div class = "div-bem-vindo">
-            <p id="id-pontos"></p> <!-- Deve mostrar a qntd. de pontos que o usuario tem -->
-            <button id="header-exit" type="submit">Desconectar</button>
-        </div>
-    </header>
-
-    <section>
-        <img id="img-logo" src="/images/LOGOPAPHD.png" alt="Logo P@P">
-        <h1 id="h1-centering">Quiz Sobre o Regimento Ponto a Ponto</h1>
-        <p id="paragraph-section">Teste seus conhecimentos sobre as normas, políticas e <br>
-            procedimentos da empresa</p>
-    </section>
-
-    <main>
-        <div class="card-acao">
-            <h2 class="main-cards-h2">Jogar Agora</h2>
-            <p class="main-cards-p">Escolha seu nível <br> e comece a testar seus <br>conhecimentos.</p>
-            
-            <select id="select-dificuldade" class="select-estilizado">
-                <option value="1">Iniciante</option>
-                <option value="2">Amador</option>
-                <option value="3">Pro</option>
-            </select>
-
-            <span id="btn-comecar-quiz" class="botao-visual">Começar Quiz</span>
-        </div>
-        <a href=" " class="card-acao">
-            <h2 class="main-cards-h2" >Ranking</h2>
-            <p class="main-cards-p">Veja os melhores <br> jogadores e suas <br>pontuacoes.</p>
-            <span class="botao-visual">Ver Ranking</span>
-        </a>
-        <a href=" " class="card-acao">
-            <h2 class="main-cards-h2">Loja</h2>
-            <p class="main-cards-p">Compre reconpensas <br>com seus pontos.</p>
-            <span class="botao-visual">Ver Loja</span>
-        </a>
-    </main>
-
-    <article id="article-how">
-        <h2 id="h2-how-work">Regras</h2>
-        
-        <div id="how-work">
-            <div>
-            <h3>Modo Iniciante</h3>
-            <p class="p-how">5 perguntas básicas com 30 segundos cada. <br> Ideal para iniciantes.</p>
+    <div class="page-shell">
+        <header class="topbar">
+            <div class="topbar-user">
+                <div class="avatar-circle">
+                    <i data-lucide="user"></i>
+                </div>
+                <p id="bem-vindo">Bem-vindo!</p>
             </div>
 
-            <div>
-            <h3>Modo Amador</h3>
-            <p class="p-how">8 perguntas intermediárias com 25 segundos. <br> Para quem já conhece a empresa.</p>
+            <div class="topbar-actions">
+                <p id="id-pontos">0 pontos</p>
+                <button id="header-exit" type="button">Desconectar</button>
             </div>
+        </header>
 
-            <div>
-            <h3>Modo Pro</h3>
-            <p class="p-how">10 perguntas avançadas com 20 segundos. <br> Desafio máximo!</p>
+        <section class="hero-section">
+            <img id="img-logo" src="/images/LOGOPAPHD.png" alt="Logo Ponto a Ponto">
+            <h1 id="h1-centering">Quiz Sobre o Regimento Ponto a Ponto</h1>
+            <p id="paragraph-section">Teste seus conhecimentos sobre as normas, políticas e procedimentos da empresa.</p>
+
+            <main class="actions-grid">
+                <div class="card-acao card-quiz">
+                    <div class="card-icon card-icon-primary">
+                        <i data-lucide="gamepad-2"></i>
+                    </div>
+                    <h2 class="main-cards-h2">Jogar Agora</h2>
+                    <p class="main-cards-p">Escolha seu nível e comece a testar seus conhecimentos.</p>
+
+                    <select id="select-dificuldade" class="select-estilizado">
+                        <option value="1">Iniciante</option>
+                        <option value="2">Amador</option>
+                        <option value="3">Pro</option>
+                    </select>
+
+                    <button id="btn-comecar-quiz" class="botao-visual botao-principal" type="button">Começar Quiz</button>
+                </div>
+
+                <div class="card-acao card-link">
+                    <div class="card-icon card-icon-secondary">
+                        <i data-lucide="trophy"></i>
+                    </div>
+                    <h2 class="main-cards-h2">Ranking</h2>
+                    <p class="main-cards-p">Veja os melhores jogadores e suas pontuações.</p>
+                    <button class="botao-visual botao-secundario-home" type="button">Ver Ranking</button>
+                </div>
+
+                <div class="card-acao card-link">
+                    <div class="card-icon card-icon-secondary">
+                        <i data-lucide="shopping-bag"></i>
+                    </div>
+                    <h2 class="main-cards-h2">Loja</h2>
+                    <p class="main-cards-p">Compre recompensas com seus pontos.</p>
+                    <button class="botao-visual botao-secundario-home" type="button">Ver Loja</button>
+                </div>
+            </main>
+        </section>
+
+        <article id="article-how">
+            <h2 id="h2-how-work">
+                <i data-lucide="book-open-check"></i>
+                Regras
+            </h2>
+
+            <div id="how-work">
+                <div class="regra-card">
+                    <div class="regra-icone regra-icone-iniciante">
+                        <i data-lucide="lightbulb"></i>
+                    </div>
+                    <div class="regra-conteudo">
+                        <div class="regra-topo">
+                            <h3>Modo Iniciante</h3>
+                            <span class="regra-tempo">30s</span>
+                        </div>
+                        <p class="p-how">5 perguntas básicas com 30 segundos cada. Ideal para iniciantes.</p>
+                    </div>
+                </div>
+
+                <div class="regra-card">
+                    <div class="regra-icone regra-icone-amador">
+                        <i data-lucide="user-round"></i>
+                    </div>
+                    <div class="regra-conteudo">
+                        <div class="regra-topo">
+                            <h3>Modo Amador</h3>
+                            <span class="regra-tempo">25s</span>
+                        </div>
+                        <p class="p-how">8 perguntas intermediárias com 25 segundos. Para quem já conhece a empresa.</p>
+                    </div>
+                </div>
+
+                <div class="regra-card">
+                    <div class="regra-icone regra-icone-pro">
+                        <i data-lucide="star"></i>
+                    </div>
+                    <div class="regra-conteudo">
+                        <div class="regra-topo">
+                            <h3>Modo Pro</h3>
+                            <span class="regra-tempo">20s</span>
+                        </div>
+                        <p class="p-how">10 perguntas avançadas com 20 segundos. Desafio real para quem quer ir além.</p>
+                    </div>
+                </div>
             </div>
-        
-        </div>
-        
         </article>
-        <script src="/js/home.js"></script>
+    </div>
+
+    <script src="/js/home.js"></script>
 </body>
 </html>

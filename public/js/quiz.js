@@ -80,6 +80,11 @@ async function verificarResposta(opcaoEscolhida, correctOption, options) {
 
         const sessaoAtualizada = await response.json();
 
+        const contador = document.getElementById('quiz-cont-ask');
+        if (contador && !sessaoAtualizada.isFinished) {
+    contador.textContent = `Questão ${sessaoAtualizada.currentQuestion}/${sessaoAtualizada.totalQuestions}`;
+}
+
         setTimeout(() => {
             if (sessaoAtualizada.isFinished) {
                 alert(`Quiz finalizado! Você acertou ${sessaoAtualizada.correctAnswers} de ${sessaoAtualizada.totalQuestions} perguntas.`);
@@ -115,6 +120,16 @@ function iniciarTimer() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    const backButton = document.getElementById('back-button');
+
+    if (backButton) {
+    backButton.addEventListener('click', () => {
+        clearInterval(cronometro);
+        localStorage.removeItem('quizSessionId');
+        localStorage.removeItem('dificuldadeEscolhida');
+        window.location.href = '/home';
+    });
+}
     if (!sessionId) {
         alert("Sessão não encontrada. Inicie o quiz pela Home.");
         window.location.href = '/home';

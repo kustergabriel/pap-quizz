@@ -1,0 +1,44 @@
+Arquivos alterados no redesign:
+
+1.  src/views/cadastrologin.html
+2.  src/views/cadusuario.html
+3.  src/views/homepageusr.html
+4.  public/css/cadastrologin.css
+5.  public/css/style.cad.css
+6.  public/css/stylehomepageusr.css
+7.  public/js/script.js
+8.  public/js/home.js
+9.  public/css/style-perguntas.css
+10. public/images (EU APENAS ADD mais imagens)
+11. public/js/quiz.js
+12. public/js/lucide-local.js (EU ADD um arquivo de banco de ícones)
+13. src/views/perguntas.html
+
+O que foi preservado:
+- ids principais usados pelo JavaScript
+- lógica de login
+- lógica de cadastro
+- saudação dinâmica da home pelo nickname vindo da API /api/me
+- pontos dinâmicos
+- seleção de dificuldade
+- botão de começar quiz
+- fluxo das regras
+- rota de logout
+
+O que mudou:
+- visual do login
+- visual do cadastro
+- visual da home do usuário
+- fundo refeito usando GPT para criação dum fundo em png
+- ícones com Lucide (indicado pelo GPT)
+- botão de mostrar/ocultar senha no login e cadastro
+- pequenos ajustes no JS para evitar erro se algum elemento não existir
+- conserto do problema de não contar perguntas
+- conserto do botão de sair do quiz não sair realmente dele
+
+Observações:
+
+- falta adicionar as outras páginas 
+(como a de ranking e a outra que seria a loja, além de encaixar a página de adm no meio de tudo)
+
+qualquer coisa me perguntem!!
