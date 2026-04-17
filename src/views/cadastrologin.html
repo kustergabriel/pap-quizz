@@ -2,44 +2,58 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="css/cadastrologin.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="/js/lucide-local.js"></script>
 </head>
 <body>
+    <main class="auth-page">
+        <div class="login-container">
+            <div class="logo">
+                <img src="/images/LOGOPAPHD.png" alt="Logo Ponto a Ponto">
+            </div>
 
-    <div class="login-container">
-        <div class="logo">
-            <img src="/images/LOGOPAPHD.png" alt="Logo P@P">
+            <h1>Bem-vindo!</h1>
+            <p class="subtitle">Quiz de Regimentos Ponto a Ponto</p>
+
+            <div class="card">
+                <form id="form-login">
+                    <label for="login-user">Nome de Usuário</label>
+                    <div class="input-group">
+                        <i data-lucide="user"></i>
+                        <input type="text" id="login-user" name="nickname" placeholder="Digite seu nome de usuário" required>
+                    </div>
+
+                    <label for="login-pass">Senha</label>
+                    <div class="input-group input-group-password">
+                        <i data-lucide="lock"></i>
+                        <input type="password" id="login-pass" name="password" placeholder="Digite sua senha" required>
+                        <button type="button" class="password-toggle" data-toggle-password="login-pass" aria-label="Mostrar ou ocultar senha">
+                            <i data-lucide="eye"></i>
+                        </button>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Entrar</button>
+
+                    <div class="divider"></div>
+
+                    <p class="small-text">Ainda não tem uma conta?</p>
+
+                    <button type="button" id="btn-ir-para-cadastro" class="btn-secondary">
+                        Cadastrar-se
+                    </button>
+                </form>
+            </div>
         </div>
+    </main>
 
-        <h1>Bem-vindo!</h1>
-        <p class="subtitle">Quiz de Regimentos Ponto a Ponto</p>
-
-        <div class="card">
-            <form id="form-login">
-                <label for="login-user">Nome de Usuário</label>
-                <div class="input-group">
-                    <input type="text" id="login-user" name="nickname" placeholder="Digite seu nome de usuário" required>
-                </div>
-
-                <label for="login-pass">Senha</label>
-                <div class="input-group">
-                    <input type="password" id="login-pass" name="password" placeholder="Digite sua senha" required>
-                </div>
-
-                <button type="submit" class="btn-primary">Entrar</button>
-
-                <div class="divider"></div>
-
-                <p class="small-text">Ainda não tem uma conta?</p>
-
-                <button type="button" id="btn-ir-para-cadastro" class="btn-secondary">
-                    Cadastrar-se
-                </button>
-            </form>
-        </div>
-    </div>
+    <script>
+      lucide.createIcons();
+    </script>
     <script src="/js/script.js"></script>
-    </body>
+</body>
 </html>
